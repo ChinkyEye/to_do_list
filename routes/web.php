@@ -24,4 +24,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::namespace('App\Http\Controllers\User')->prefix('user')->name('user.')->middleware(['user'])->group(function(){
     Route::get('/', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
     Route::resource('task', TaskController::class );
+    Route::patch('/task/{id}/toggle-status', [App\Http\Controllers\User\TaskController::class, 'toggleStatus'])->name('user.task.toggleStatus');
 });

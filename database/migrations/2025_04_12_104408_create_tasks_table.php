@@ -19,7 +19,7 @@ class CreateTasksTable extends Migration
             $table->text('description')->nullable();
             $table->string('category', 255)->default('Others');
             $table->timestamp('reminder')->nullable();
-            $table->enum('status', ['Pending', 'In Progress', 'Completed'])->default('Pending');
+            $table->enum('status', ['Pending', 'Completed'])->default('Pending');
             $table->integer('created_by');
             $table->timestamps();
         });

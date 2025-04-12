@@ -102,6 +102,17 @@ class TaskController extends Controller
         $task->update($main_data);
         return redirect()->route('user.task.index');
     }
+    public function toggleStatus($id)
+    {
+        $task = Task::findOrFail($id);
+        $task->status = $task->status === 'Completed' ? 'Pending' : 'Completed';
+        $task->save();
+
+    // Return a response to indicate success and the new status
+        return response()->json([
+            'status' => $task->status
+        ]);
+    }
 
     /**
      * Remove the specified resource from storage.

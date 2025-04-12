@@ -15,7 +15,7 @@
     <nav class="mt-2">
        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
          <li class="nav-item">
-          <a href="{{ route('user.task.index')}}" class="nav-link">
+          <a href="{{ route('user.task.index')}}" class="nav-link {{ (request()->is('user/task*')) ? 'active' : '' }}">
             <i class="fa fa-tasks" aria-hidden="true"></i>
             <p>Tasks</p>
           </a>
