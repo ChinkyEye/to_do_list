@@ -23,7 +23,7 @@ class UserMiddleware
 
     public function handle(Request $request, Closure $next)
     {
-        if (!$this->auth->check() || ($request->user()->user_type != '0' || $request->user()->is_active != '1')){
+        if (!$this->auth->check() || ($request->user()->user_type != '0' )){
             $this->auth->logout();
             return redirect ('/');
         }
