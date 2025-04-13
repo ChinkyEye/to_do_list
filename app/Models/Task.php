@@ -17,4 +17,9 @@ class Task extends Model
         'status',
         'created_by',
     ];
+
+    public function isCompleted(): bool
+    {
+        return $this->status === 'Completed';
+    }
 }

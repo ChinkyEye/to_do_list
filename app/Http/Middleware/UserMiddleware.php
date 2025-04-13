@@ -25,7 +25,7 @@ class UserMiddleware
     {
         if (!$this->auth->check() || ($request->user()->user_type != '0' )){
             $this->auth->logout();
-            return redirect ('/');
+            return redirect ('/login');
         }
         return $next($request);
     }

@@ -97,10 +97,20 @@ class TaskController extends Controller
     {
         $main_data = $request->all();
         // $main_data['updated_by'] = Auth::user()->id;
+        // $task->update($main_data);
+        if($task->update($main_data)){
+            $notification = array(
+                'message' => 'Data updated successfully!',
+                'alert-type' => 'success'
+            );
+        }else{
+            $notification = array(
+                'message' => 'Data could not be updated!',
+                'alert-type' => 'error'
+            );
+        }
+        return redirect()->route('user.task.index')->with($notification);
 
-        // dd($main_data);
-        $task->update($main_data);
-        return redirect()->route('user.task.index');
     }
     public function toggleStatus($id)
     {
