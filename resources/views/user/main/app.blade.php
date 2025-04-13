@@ -62,6 +62,60 @@
     }
     @endif
   </script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <script>
+    $('.delete-confirm').on('click', function (e) {
+      event.preventDefault();
+      const url = $(this).attr('action');
+      var token = $('meta[name="csrf-token"]').attr('content');
+      swal({
+        title: 'Are you sure?',
+        text: 'This record and it`s details will be permanantly deleted!',
+        icon: 'warning',
+        buttons: ["Cancel", "Yes!"],
+        dangerMode: true,
+        closeOnClickOutside: false,
+      }).then(function(value) {
+        if(value == true){
+          $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+              _token: token,
+              '_method': 'DELETE',
+            },
+            success: function (data) {
+              swal({
+                title: "Success!",
+                type: "success",
+                text: "\n Click OK",
+                icon: "success",
+                showConfirmButton: false,
+              }).then(location.reload(true));
+              
+            },
+            error: function (data) {
+              swal({
+                title: 'Opps...',
+                text: "\n Please refresh your page",
+                type: 'error',
+                timer: '1500'
+              });
+            }
+          });
+        }else{
+          swal({
+            title: 'Cancel',
+            text: "Data is safe.",
+            icon: "success",
+            type: 'info',
+            timer: '1500'
+          });
+        }
+      });
+    });
+  </script> 
 </body>
 </html>
 

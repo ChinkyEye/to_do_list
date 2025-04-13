@@ -26,7 +26,7 @@
         @csrf
         <div class="row">
           <div class="form-group col-md-12">
-            <label for="title">Title</label>
+            <label for="title">Title<span class="text-danger">*</span></label>
             <input type="text"  class="form-control @error('title') is-invalid @enderror max" id="title" placeholder="Enter title " name="title" autocomplete="off" autofocus value="{{ old('title') }}">
             @error('title')
             <span class="text-danger font-italic" role="alert">
@@ -35,7 +35,7 @@
             @enderror
           </div>
           <div class="form-group col-md-12">
-            <label for="description">Description</label>
+            <label for="description">Description<span class="text-danger">*</span></label>
             <textarea class="form-control" id="description" name="description">{{ old('description') }}
             </textarea>
             @error('description')
@@ -45,7 +45,7 @@
             @enderror
           </div>
           <div class="form-group col-md-12">
-            <label for="category" class="form-label">Category <span class="text-danger">*</span></label>
+            <label for="category" class="form-label">Category<span class="text-danger">*</span></label>
             <div class="input-group">
               <select name="category" id="category" class="form-control" required>
                 <option value="" disabled selected {{ old('category') ? '' : 'selected' }}>Select a category</option>
