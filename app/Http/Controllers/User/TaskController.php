@@ -46,7 +46,7 @@ class TaskController extends Controller
             'category' => 'required',
             'reminder' => 'required',
         ]);
-        $staffhasbanks = Task::create([
+        $tasks = Task::create([
             'title' => $request['title'],
             'description' => $request['description'],
             'category' => $request['category'],

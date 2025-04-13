@@ -30,7 +30,7 @@
             <div class="icon">
               <i class="fa fa-calendar-alt"></i>
             </div>
-            <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ route('user.task.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-md-6">
@@ -43,18 +43,16 @@
             <div class="icon">
               <i class="fa fa-calendar-alt"></i>
             </div>
-            <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ route('user.task.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <label class="font-weight-bold">Progress Bar</label>
-        <div class="progress" style="height: 30px;">
-          <div class="progress-bar bg-info progress-bar-striped"  role="progressbar" style="width: {{ $progress }}%;" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100">
-            {{ round($progress) }}%
-          </div>
+    <div class="col-md-12">
+      <label class="font-weight-bold">Progress Bar</label>
+      <div class="progress" style="height: 30px;">
+        <div class="progress-bar bg-info progress-bar-striped"  role="progressbar" style="width: {{ $progress }}%;" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100">
+          {{ round($progress) }}%
         </div>
       </div>
     </div>
