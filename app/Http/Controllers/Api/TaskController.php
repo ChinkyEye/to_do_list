@@ -41,19 +41,12 @@ class TaskController extends Controller
         $tasks = Task::create([
             'title' => $request['title'],
             'description' => $request['description'],
-            // 'category' => $request['category'],
+            'category' => $request['category'],
             'reminder' => $request['reminder'],
             'created_by' => Auth::user()->id,
         ]);
-        // $students = Student::create([
-        //     'user_name' => $request['user_name'],
-        //     'address_id' => $request['address_id'],
-        //     'phone_no' => $request['phone_no'],
-        //     'age' => $request['age'],
-        //     'resolved_by' => Auth::user()->id,
-        // ]);
         return response()->json([
-            'message' => 'Student created',
+            'message' => 'Task created',
             'status' => 'success',
             'data' => $tasks,
         ]);
@@ -88,9 +81,22 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Task $task)
     {
-        //
+        $main_data = $request->all();
+        $datas = $task->update($main_data);
+        if($datas){
+            $notification = array(
+            'message' => 'Data updated successfully!',
+            'alert-type' => 'success'
+            );
+        }else{
+            $notification = array(
+            'message' => 'Data could not be updated!',
+            'alert-type' => 'error'
+            );
+        }
+        return response()->json($notification); 
     }
 
     /**
