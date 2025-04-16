@@ -48,11 +48,37 @@
         </div>
       </div>
     </div>
-    <div class="col-md-12">
-      <label class="font-weight-bold">Progress Bar</label>
-      <div class="progress" style="height: 30px;">
-        <div class="progress-bar bg-info progress-bar-striped"  role="progressbar" style="width: {{ $progress }}%;" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100">
-          {{ round($progress) }}%
+    <div class="row">
+      <div class="col-md-8">
+        <label class="font-weight-bold">Progress Bar</label>
+        <div class="progress" style="height: 30px;">
+          <div class="progress-bar bg-info progress-bar-striped"  role="progressbar" style="width: {{ $progress }}%;" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100">
+            {{ round($progress) }}%
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="fas fa-exclamation-triangle"></i>
+              Alerts
+            </h3>
+          </div>
+          <div class="card-body">
+          <!--  @foreach(auth()->user()->unreadNotifications as $notification)
+           <div class="alert alert-danger alert-dismissible">
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            {{ $notification->data['message'] }}
+          </div>
+          @endforeach -->
+           @foreach($overdueTasks as $key=>$data) 
+           <div class="alert alert-danger alert-dismissible">
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+             {{ $data->title }} is overdue
+           </div>
+           @endforeach 
+          </div>
         </div>
       </div>
     </div>

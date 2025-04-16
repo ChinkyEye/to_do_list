@@ -5,7 +5,10 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\User;
 use Auth;
+use Carbon\Carbon;
+use App\Notifications\TaskOverdue;
 
 class HomeController extends Controller
 {
@@ -16,6 +19,23 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        $overdueTasks = Task::where('reminder', '<', Carbon::now())
+                    ->where('status', '!=', 'Completed')
+                    ->get();
+                    // dd($overdueTasks, Carbon::now());
+
+                    // foreach ($overdueTasks as $task) {
+                    //     $alreadyNotified = $user->notifications()
+                    //     ->where('data->task_id', $task->id)
+                    //     ->where('type', 'App\Notifications\TaskOverdue')
+                    //     ->exists();
+
+                    //     if (!$alreadyNotified) {
+                    //         $user->notify(new TaskOverdue($task));
+                    //     }
+                    // }    
+
         $total_tasks = Task::where('created_by',Auth::user()->id)->count();
         $count_complete = Task::where('created_by', Auth::user()->id)
                                 ->where('status','Completed')
@@ -29,7 +49,7 @@ class HomeController extends Controller
                             ['pending' => $count_pending],
                             ['total_tasks' => $total_tasks], 
                         ])->collapse()->all();                                        
-        return view('user.main.home', compact(['count_list'],'progress'));
+        return view('user.main.home', compact(['count_list'],'progress','overdueTasks'));
     }
 
     /**

@@ -29,7 +29,7 @@
               <td class="text-center">{{$data->description}}</td>
               <td class="text-center">{{$data->category}}</td>
               <td class="text-center">
-                <span class="badge badge-primary">{{ \Carbon\Carbon::parse($data->created_at)->format('Y-m-d') }} </span>
+                <span class="badge badge-primary">{{ \Carbon\Carbon::parse($data->reminder)->format('Y-m-d') }} </span>
                 <span class="badge badge-secondary">{{ \Carbon\Carbon::parse($data->reminder)->format('h:i A') }}</span>
               </td>
               <td>
