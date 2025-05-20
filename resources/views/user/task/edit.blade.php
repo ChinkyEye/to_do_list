@@ -9,12 +9,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="text-capitalize">Edit {{ $page }}</h1>
+        <h1 class="text-capitalize">Edit Task</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{route('user.home')}}">Home</a></li>
-          <li class="breadcrumb-item active text-capitalize">{{ $page }} Page</li>
+          <li class="breadcrumb-item active text-capitalize">Task Page</li>
         </ol>
       </div>
     </div>

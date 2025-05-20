@@ -25,16 +25,16 @@ class HomeController extends Controller
                     ->get();
                     // dd($overdueTasks, Carbon::now());
 
-                    // foreach ($overdueTasks as $task) {
-                    //     $alreadyNotified = $user->notifications()
-                    //     ->where('data->task_id', $task->id)
-                    //     ->where('type', 'App\Notifications\TaskOverdue')
-                    //     ->exists();
+                    foreach ($overdueTasks as $task) {
+                        $alreadyNotified = $user->notifications()
+                        ->where('data->task_id', $task->id)
+                        ->where('type', 'App\Notifications\TaskOverdue')
+                        ->exists();
 
-                    //     if (!$alreadyNotified) {
-                    //         $user->notify(new TaskOverdue($task));
-                    //     }
-                    // }    
+                        if (!$alreadyNotified) {
+                            $user->notify(new TaskOverdue($task));
+                        }
+                    }    
 
         $total_tasks = Task::where('created_by',Auth::user()->id)->count();
         $count_complete = Task::where('created_by', Auth::user()->id)
