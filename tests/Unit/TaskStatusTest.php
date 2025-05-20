@@ -22,7 +22,7 @@ class TaskStatusTest extends TestCase
         ]);
         $this->assertTrue($task->isCompleted());
     }
-
+      //this is pending function
     public function test_it_returns_false_if_task_is_pending()
     {
         $task = Task::factory()->create([
