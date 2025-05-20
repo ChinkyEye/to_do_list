@@ -25,7 +25,5 @@ Route::namespace('App\Http\Controllers\User')->prefix('user')->name('user.')->mi
     Route::get('/', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
     Route::resource('task', TaskController::class );
     Route::patch('/task/{id}/toggle-status', [App\Http\Controllers\User\TaskController::class, 'toggleStatus'])->name('user.task.toggleStatus');
-    Route::resource('seat', SeatController::class );
-    Route::get('seat/isactive/{id}', [App\Http\Controllers\User\SeatController::class, 'isBooked'])->name('user.seat.isBooked');
 
 });
